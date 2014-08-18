@@ -70,5 +70,27 @@ public class MeasurementTest {
     @Test
     public void testShouldKnowThatEqualMeasurementsHaveTheSameHashCode() throws Exception {
         assertThat(new Measurement(1, Unit.INCH).hashCode(), is(new Measurement(1, Unit.INCH).hashCode()));
+
     }
+
+    @Test
+    public void testShouldKnowThatTwoInchesPlusThreeInchesIsFiveInches() throws Exception {
+        assertThat(new Measurement(2, Unit.INCH).plus(new Measurement(3, Unit.INCH)), is(new Measurement(5, Unit.INCH)));
+    }
+    @Test
+    public void testShouldKnowThatTwoInchesPlusFourInchesIsSixInches() throws Exception {
+        assertThat(new Measurement(2, Unit.INCH).plus(new Measurement(4, Unit.INCH)), is(new Measurement(6, Unit.INCH)));
+    }
+
+    @Test
+    public void testShouldKnowThatFiveTeaSpoonsPlusTwoTeaSpoonsIsSevenTeaSpoons() throws Exception {
+        assertThat(new Measurement(5, Unit.TEASPOON).plus(new Measurement(2, Unit.TEASPOON)), is(new Measurement(7, Unit.TEASPOON)));
+    }
+
+    @Test
+    public void testShouldKnowThatFiveTeaSpoonsPlusTwoTableSpoonsIsElevenTeaSpoons() throws Exception {
+        assertThat(new Measurement(5, Unit.TEASPOON).plus(new Measurement(2, Unit.TABLESPOON)), is(new Measurement(11, Unit.TEASPOON)));
+    }
+
+
 }

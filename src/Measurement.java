@@ -16,9 +16,9 @@ public class Measurement {
         }
         Measurement otherMeasurement = (Measurement) otherObject;
 
-        if (unit.getUnitType() != otherMeasurement.unit.getUnitType())
+        if (unit.isComparable(otherMeasurement.unit)){
             return false;
-
+        }
         return unit.toBase(value) == otherMeasurement.unit.toBase(otherMeasurement.value);
     }
 
@@ -33,4 +33,13 @@ public class Measurement {
     public String toString() {
         return "" + value + "" + unit;
     }
+
+    public Measurement plus(Measurement measurement) {
+        int firstBaseValue = this.unit.toBase(this.value);
+        int secondBaseValue = measurement.unit.toBase(measurement.value);
+
+        return new Measurement(firstBaseValue + secondBaseValue, this.unit.getBaseUnit());
+
+    }
+
 }
