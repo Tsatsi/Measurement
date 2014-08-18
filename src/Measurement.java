@@ -31,10 +31,13 @@ public class Measurement {
 
     @Override
     public String toString() {
-        return "" + value + "" + unit;
+        return value + unit.name();
     }
 
     public Measurement plus(Measurement measurement) {
+        if(this.unit.getBaseUnit()!= measurement.unit.getBaseUnit()) {
+            throw new RuntimeException("Base units are not the same");
+        }
         int firstBaseValue = this.unit.toBase(this.value);
         int secondBaseValue = measurement.unit.toBase(measurement.value);
 

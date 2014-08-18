@@ -92,5 +92,8 @@ public class MeasurementTest {
         assertThat(new Measurement(5, Unit.TEASPOON).plus(new Measurement(2, Unit.TABLESPOON)), is(new Measurement(11, Unit.TEASPOON)));
     }
 
-
+    @Test (expected = RuntimeException.class)
+    public void testShouldKnowThatTwoDifferentUnitTypesCannotBeAdded() throws Exception {
+        new Measurement(5, Unit.INCH).plus(new Measurement(2, Unit.TEASPOON));
+    }
 }
